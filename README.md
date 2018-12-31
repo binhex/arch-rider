@@ -1,14 +1,16 @@
 **Application**
 
-[IntelliJ IDEA](https://www.jetbrains.com/idea/)
+[Rider](https://www.jetbrains.com/rider/)
 
 **Description**
 
-IntelliJ IDEA is a special programming environment or integrated development environment (IDE) largely meant for Java. This environment is used especially for the development of programs. It is developed by a company called JetBrains, which was formally called IntelliJ. It is available in two editions: the Community Edition which is licensed by Apache 2.0, and a commercial edition known as the Ultimate Edition. Both of them can be used for creating software which can be sold. What makes IntelliJ IDEA so different from its counterparts is its ease of use, flexibility and its solid design. This Docker Image includes Git for SCM and Scala, Kotlin and Groovy programming languages, and Gradle for build automation.
+JetBrains Rider is a cross-platform .NET IDE based on the IntelliJ platform and ReSharper. Rider supports .NET Framework, the new cross-platform .NET Core, and Mono based projects. This lets you develop a wide range of applications including .NET desktop applications, services and libraries, Unity games, Xamarin apps, ASP.NET and ASP.NET Core web applications.
 
 **Build notes**
 
-Latest stable IntelliJ IDEA Community Edition release from Arch Linux.
+Latest stable Rider release from Arch Linux.
+
+Note:- This application requires a license, otherwise it will run in Evaluation Mode for 30 days.
 
 **Usage**
 ```
@@ -24,7 +26,7 @@ docker run -d \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
-    binhex/arch-intellij
+    binhex/arch-rider
 ```
 
 Please replace all user variables in the above command defined by <> with the correct values.
@@ -34,16 +36,16 @@ Please replace all user variables in the above command defined by <> with the co
 docker run -d \
     -p 5900:5900 \
     -p 6080:6080 \
-    --name=intellij \
-    -v /apps/docker/intellij:/config \
-    -v /apps/docker/intellij/projects:/data \
+    --name=rider \
+    -v /apps/docker/rider:/config \
+    -v /apps/docker/rider/projects:/data \
     -v /etc/localtime:/etc/localtime:ro \
-    -e WEBPAGE_TITLE=Tower \
+    -e WEBPAGE_TITLE=Rider \
     -e VNC_PASSWORD=mypassword \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
-    binhex/arch-intellij
+    binhex/arch-rider
 ```
 
 **Access via web interface (noVNC)**
@@ -74,4 +76,4 @@ If you appreciate my work, then please consider buying me a beer  :D
 
 [![PayPal donation](https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MM5E27UX6AUU4)
 
-[Support forum](https://lime-technology.com/forums/topic/62598-support-binhex-intellij/)
+[Support forum](https://lime-technology.com/forums/topic/62598-support-binhex-rider/)
