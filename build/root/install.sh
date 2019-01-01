@@ -120,7 +120,7 @@ export RIDER_PROPERTIES=$(echo "${RIDER_PROPERTIES}" | sed -e 's~^[ \t]*~~;s~[ \
 if [[ ! -z "${RIDER_PROPERTIES}" ]]; then
 	echo "[info] RIDER_PROPERTIES defined as '${RIDER_PROPERTIES}'" | ts '%Y-%m-%d %H:%M:%.S'
 else
-	export RIDER_PROPERTIES="/home/nobody/.config/rider/idea.properties"
+	export RIDER_PROPERTIES="/home/nobody/.config/rider/config/idea.properties"
 	echo "[info] RIDER_PROPERTIES not defined, defaulting to '${RIDER_PROPERTIES}'" | ts '%Y-%m-%d %H:%M:%.S'
 fi
 EOF
