@@ -21,6 +21,8 @@ docker run -d \
     -v <path for config files>:/config \
     -v <path for data files>:/data \
     -v /etc/localtime:/etc/localtime:ro \
+    -e RIDER_PROPERTIES=<optional path to idea.properties file> \
+    -e RIDER_VM_OPTIONS=<optional additional jvm options > \
     -e WEBPAGE_TITLE=<name shown in browser tab> \
     -e VNC_PASSWORD=<password for web ui> \
     -e UMASK=<umask for created files> \
