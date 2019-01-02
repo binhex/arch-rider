@@ -123,6 +123,13 @@ else
 	export RIDER_PROPERTIES="/home/nobody/.config/rider/config/idea.properties"
 	echo "[info] RIDER_PROPERTIES not defined, defaulting to '${RIDER_PROPERTIES}'" | ts '%Y-%m-%d %H:%M:%.S'
 fi
+
+export RIDER_VM_OPTIONS=$(echo "${RIDER_VM_OPTIONS}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
+if [[ ! -z "${RIDER_VM_OPTIONS}" ]]; then
+	echo "[info] RIDER_VM_OPTIONS defined as '${RIDER_VM_OPTIONS}'" | ts '%Y-%m-%d %H:%M:%.S'
+else
+	echo "[info] RIDER_VM_OPTIONS not defined, skipping additional options'" | ts '%Y-%m-%d %H:%M:%.S'
+fi
 EOF
 
 # replace env vars placeholder string with contents of file (here doc)
