@@ -57,8 +57,7 @@ cat <<'EOF' > /tmp/startcmd_heredoc
 # rider hasn't been run yet and thus set default location for future projects to
 # external volume mapping.
 if [ ! -f /config/rider/config/options/recentProjects.xml ]; then
-	mkdir -p /config/rider/config/options
-	cp /home/nobody/recentProjects.xml /config/rider/config/options/recentProjects.xml
+	mkdir -p /config/rider/config/options ; cp /home/nobody/recentProjects.xml /config/rider/config/options/recentProjects.xml
 fi
 
 # run rider
