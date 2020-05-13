@@ -57,25 +57,13 @@ aur_build_only="true"
 # call aur install script (arch user repo)
 source aur.sh
 
-# config rider
-####
+# config novnc
+###
 
-# set rider paths for config, plugins, system and log, note the location of the idea.properties
-# file is constructed from the idea.paths.selector value, as shown above.
-mkdir -p /home/nobody/.config/rider/config
-echo "idea.config.path=/config/rider/config" > /home/nobody/.config/rider/config/idea.properties
-echo "idea.plugins.path=/config/rider/config/plugins" >> /home/nobody/.config/rider/config/idea.properties
-echo "idea.system.path=/config/rider/system" >> /home/nobody/.config/rider/config/idea.properties
-echo "idea.log.path=/config/rider/system/log" >> /home/nobody/.config/rider/config/idea.properties
+# overwrite novnc 16x16 icon with application specific 16x16 icon (used by bookmarks and favorites)
+cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 cat <<'EOF' > /tmp/startcmd_heredoc
-# check if recent projects directory config file exists, if it doesnt we assume
-# rider hasn't been run yet and thus set default location for future projects to
-# external volume mapping.
-if [ ! -f /config/rider/config/options/recentProjects.xml ]; then
-	mkdir -p /config/rider/config/options ; cp /home/nobody/recentProjects.xml /config/rider/config/options/recentProjects.xml
-fi
-
 # run rider
 /usr/bin/rider
 EOF
@@ -86,12 +74,6 @@ sed -i '/# STARTCMD_PLACEHOLDER/{
     r /tmp/startcmd_heredoc
 }' /home/nobody/start.sh
 rm /tmp/startcmd_heredoc
-
-# config novnc
-###
-
-# overwrite novnc 16x16 icon with application specific 16x16 icon (used by bookmarks and favorites)
-cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 # config openbox
 ####
