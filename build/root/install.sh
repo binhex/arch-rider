@@ -50,7 +50,7 @@ fi
 ####
 
 # define aur packages
-aur_packages="msbuild-15-bin rider"
+aur_packages="rider"
 
 # build package only, as apacman seems to be having issues finding the rider built
 # package, probably related to the fact that the package version has a colon, so
