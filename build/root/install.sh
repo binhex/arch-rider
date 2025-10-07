@@ -57,14 +57,8 @@ fi
 # define aur packages
 aur_packages="rider"
 
-# build package only, as apacman seems to be having issues finding the rider built
-# package, probably related to the fact that the package version has a colon, so
-# this could be a bug in apacman escaping.
-# due to the above issue we build and then use pacman to install manually (done in aur.sh).
-aur_build_only="true"
-
 # call aur install script (arch user repo)
-source aur.sh
+aur.sh --aur-package "${aur_packages}"
 
 # config novnc
 ###
