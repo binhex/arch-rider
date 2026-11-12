@@ -107,20 +107,24 @@ rm /tmp/menu_heredoc
 # which are then defined to point at /config/... for persistence.
 
 cat <<'EOF' > /tmp/envvars_heredoc
-export RIDER_PROPERTIES=$(echo "${RIDER_PROPERTIES}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
-if [[ ! -z "${RIDER_PROPERTIES}" ]]; then
-	echo "[info] RIDER_PROPERTIES defined as '${RIDER_PROPERTIES}'" | ts '%Y-%m-%d %H:%M:%.S'
-else
-	export RIDER_PROPERTIES="/home/nobody/.config/rider/config/idea.properties"
-	echo "[info] RIDER_PROPERTIES not defined, defaulting to '${RIDER_PROPERTIES}'" | ts '%Y-%m-%d %H:%M:%.S'
-fi
 
-export RIDER_VM_OPTIONS=$(echo "${RIDER_VM_OPTIONS}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
-if [[ ! -z "${RIDER_VM_OPTIONS}" ]]; then
-	echo "[info] RIDER_VM_OPTIONS defined as '${RIDER_VM_OPTIONS}'" | ts '%Y-%m-%d %H:%M:%.S'
-else
-	echo "[info] RIDER_VM_OPTIONS not defined, skipping additional options'" | ts '%Y-%m-%d %H:%M:%.S'
-fi
+# source in utility functions, need process_env_var
+source utils.sh
+
+# Define environment variables to process
+# Format: "VAR_NAME:DEFAULT_VALUE:REQUIRED:MASK"
+env_vars=(
+	"RIDER_PROPERTIES:/home/nobody/.config/rider/config/idea.properties:false:false"
+	"RIDER_VM_OPTIONS::false:false"
+	"ENABLE_STARTUP_SCRIPTS:no:false:false"
+	"STARTUP_SCRIPTS_MODE:wait:false:false"
+)
+
+# Process each environment variable
+for env_var in "${env_vars[@]}"; do
+	IFS=':' read -r var_name default_value required mask_value <<< "${env_var}"
+	process_env_var "${var_name}" "${default_value}" "${required}" "${mask_value}"
+done
 EOF
 
 # replace env vars placeholder string with contents of file (here doc)
